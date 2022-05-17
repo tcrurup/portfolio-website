@@ -1,5 +1,4 @@
-import '/main.css'
-import PixelSimulator from "./games/pixel-simulator/PixelSimulator"
+import PixelSimulator from "./games/pixel-simulator/PixelSimulator.js"
 
 function main(){
     console.log("loading main")

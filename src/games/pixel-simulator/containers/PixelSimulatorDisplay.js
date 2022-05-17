@@ -3,9 +3,10 @@ export default class PixelSimulatorDisplay{
     #displayElement
 
     constructor(){
+        console.log("initializing display")
         let elem = document.createElement("div")
         elem.className = "pixel-simulator-display"
-        //elem.addEventListener("onmousemove", this.mouseMove)
+        elem.addEventListener("onmousemove", this.mouseMove)
         this.#displayElement = elem
     }
 

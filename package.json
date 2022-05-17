@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "start": "http-server ./dist/index.html"
+    "start": "http-server . -p 8000"
   },
   "repository": {
     "type": "git",
@@ -25,5 +25,8 @@
     "style-loader": "^3.3.1",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "http-server": "^14.1.0"
   }
 }
