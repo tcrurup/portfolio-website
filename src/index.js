@@ -1,9 +1,9 @@
-import "../style/main.css"
-import PixelSimulatorEngine from "./games/pixel-simulator/PixelSimulatorEngine"
+import '/main.css'
+import PixelSimulator from "./games/pixel-simulator/PixelSimulator"
 
 function main(){
     console.log("loading main")
-    new PixelSimulatorEngine(document.body)
+    new PixelSimulator(document.body)
 }
 
 document.addEventListener("DOMContentLoaded", main)
