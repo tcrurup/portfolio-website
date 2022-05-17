@@ -3,7 +3,7 @@ import PixelSimulatorDisplay from "./containers/PixelSimulatorDisplay"
 export default class PixelSimulatorEngine{
 
     #display                //The display element that will be inserted into the parent element
-    #toAppendArray  //Array of elements that will be appended to the parent element
+    #toAppendArray          //Array of elements that will be appended to the parent element
     #parentElement          //Element of the DOM that will hold all the display information for this game
 
     constructor(parentElement){
@@ -16,8 +16,7 @@ export default class PixelSimulatorEngine{
     }
 
     get display (){ return this.#display}
-    get parentElement(){ return this.#display }
-
+    get parentElement(){ return this.#parentElement}
 
     appendElements(){
         for (const elem of this.#toAppendArray){ this.#parentElement.appendChild(elem) }

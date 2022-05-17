@@ -3,7 +3,9 @@ export default class PixelSimulatorDisplay{
     #displayElement
 
     constructor(){
-        this.#displayElement = document.createElement("div")
+        let elem = document.createElement("div")
+        elem.className = "pixel-simulator-display"
+        this.#displayElement = elem
     }
 
     get element(){ return this.#displayElement }

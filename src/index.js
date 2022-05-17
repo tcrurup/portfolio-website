@@ -1,3 +1,4 @@
+import "../style/main.css"
 import PixelSimulatorEngine from "./games/pixel-simulator/PixelSimulatorEngine"
 
 function main(){
