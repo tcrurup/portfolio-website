@@ -9,31 +9,21 @@ export default class PixelSimulator extends PixelSimulatorComponent{
     #engine                     //Game engine
     #display                    //View of the game board
     #container                  //The div element that 
-    #parentElement              //The element that conatins this objects container
+    #parentElement              //The element that contains this objects container
 
     constructor(parentElement){
         super()
         this.#engine = new PixelSimulatorEngine(parentElement)
         this.#display = new PixelSimulatorDisplay()
-        this.#container = this.initializeElement()
         this.#parentElement = parentElement
         this.initialize()
     }
 
-    addToContainer(element){
-        this.#container.appendChild(element)
-    }
-
-    initializeElement(){
-        super()
-        
+    addToParentElement(elem){
+        this.#parentElement.appendChild(elem)
     }
 
     initialize(){
-        this.#container.className = this.defaultClassName
-        const pendingAppends = [
-            this.#container
-        ]
-        pendingAppends.forEach( x => this.#parentElement.appendChild(x) )
+        this.addToParentElement(this.#display.element)
     }
 }
