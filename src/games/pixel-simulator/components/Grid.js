@@ -22,7 +22,7 @@ class Grid{
     initialize(){
         for(let x=0; x< this.#width; x++){
             for(let y=0; y<this.#height; y++){
-                this.#gridCells.push(new GridCell(x, y, this.#pixelSize, this.#pixelSize))
+                this.#gridCells.push(new GridCell(x, y, this.#pixelSize))
             }
         }
     }
