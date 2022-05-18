@@ -6,6 +6,7 @@ class Grid{
     #height
     #pixelSize
     #gridCells
+    #sprites
     
     constructor(width, height, pixelSize){
         this.#width = width
