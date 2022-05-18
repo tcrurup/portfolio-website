@@ -1,9 +1,9 @@
+import Grid from "../components/Grid.js";
 import GridCell from "../components/GridCell.js";
 
-const CELL_HEIGHT_PIXELS = 16;
-const CELL_WIDTH_PIXELS = 16;
-const CELL_HEIGHT_COUNT = 50;
-const CELL_WIDTH_COUNT = 50;
+const CELL_PIXEL_SIZE = 16;
+const CELL_HEIGHT_COUNT = 42;     //1080
+const CELL_WIDTH_COUNT = 56;      //1920
 const DEBUG = true;
 
 export default class PixelSimulatorDisplay{
@@ -22,29 +22,32 @@ export default class PixelSimulatorDisplay{
 
     get element(){ return this.#displayElement }
     get context(){ return this.element.getContext('2d')}
-    get height(){ return CELL_HEIGHT_PIXELS * CELL_HEIGHT_COUNT }
-    get width(){ return CELL_WIDTH_PIXELS * CELL_WIDTH_COUNT }
+    get height(){ return CELL_PIXEL_SIZE * CELL_HEIGHT_COUNT }
+    get width(){ return CELL_PIXEL_SIZE * CELL_WIDTH_COUNT }
 
     initialize(){
-        this.#grid = new Array(CELL_WIDTH_COUNT).fill(new Array(CELL_HEIGHT_COUNT).fill(new GridCell()))
+        this.#grid = new Grid(CELL_WIDTH_COUNT, CELL_HEIGHT_COUNT, CELL_PIXEL_SIZE)
         if(DEBUG){ this.drawGrid() }
+        this.draw()        
     }
     
-    updateDisplay(){
-
-    }
+    draw = () => this.#grid.drawToCanvas(this.context)
 
     drawGrid(){
         //Draw horizontal lines
-        for(let i=0; i< this.height; i+=CELL_HEIGHT_PIXELS){
+        for(let i=0; i< this.height; i+=CELL_PIXEL_SIZE){
             this.context.fillRect(0, i, this.width, 1)
         }
 
         //Draw vertical lines
-        for(let i=0; i< this.height; i+=CELL_HEIGHT_PIXELS){
+        for(let i=0; i< this.width; i+=CELL_PIXEL_SIZE){
             this.context.fillRect(i, 0, 1, this.height)
         }
 
+    }
+
+    update(){
+        this.#grid.forEach(array => array.forEach())
     }
 
     static create(){
