@@ -1,3 +1,4 @@
+import "./style.css" assert { type: 'css'}
 import PixelSimulatorComponent from './components/PixelSimulatorComponent.js'
 import PixelSimulatorEngine from "./components/PixelSimulatorEngine.js"
 import PixelSimulatorDisplay from "./containers/PixelSimulatorDisplay.js"

@@ -1,3 +1,4 @@
+import "./style.css" assert { type: 'css'}
 import PixelSimulator from "./games/pixel-simulator/PixelSimulator.js"
 
 function main(){
