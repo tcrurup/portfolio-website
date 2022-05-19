@@ -1,6 +1,7 @@
 import PixelSimulatorDisplay from "../containers/PixelSimulatorDisplay.js"
 import Grid from "./Grid.js"
 
+
 const CELL_PIXEL_SIZE = 16;
 const CELL_HEIGHT_COUNT = 42;     //1080
 const CELL_WIDTH_COUNT = 56;  
@@ -43,9 +44,7 @@ class PixelSimulatorEngine{
         this.draw()
     }
 
-    spawnComet(coords, radius){
-
-    }
+    
 }
 
 export default PixelSimulatorEngine

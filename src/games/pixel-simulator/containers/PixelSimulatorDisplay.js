@@ -29,6 +29,9 @@ export default class PixelSimulatorDisplay{
         if(DEBUG){ this.drawGrid() }      
     }
     
+    addEventToElement(){
+
+    }
 
     logMousePos(event){
         
@@ -57,6 +60,10 @@ export default class PixelSimulatorDisplay{
 
     update(){
         this.#grid.forEach(array => array.forEach())
+    }
+
+    mouseHoverCellData(output){
+        
     }
 
     static create(){
