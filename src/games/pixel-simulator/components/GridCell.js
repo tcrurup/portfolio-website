@@ -1,7 +1,6 @@
-const SATURATION = 60
-const LIGHTNESS = 50
-const HUE_MIN = 15
-const HUE_MAX = 120
+const DEFAULT_SATURATION = 0
+const DEFAULT_LIGHTNESS = 100
+const DEFAULT_HUE = 0
 
 export default class GridCell{
 
@@ -9,28 +8,35 @@ export default class GridCell{
     #y    
     #size
     #hue
+    #saturation
+    #lightness
 
-    constructor(x, y, size){
+    constructor(x, y, size, hue = DEFAULT_HUE, lightness = DEFAULT_LIGHTNESS, saturation = DEFAULT_SATURATION){
         this.#x = x
         this.#y = y
-        this.#size = size
-        this.#hue = HUE_MIN
-        this.hydration = 100       
+        this.#size = size 
+        this.#hue = hue
+        this.#lightness = lightness
+        this.#saturation = saturation  
     }
 
     get xOffset(){ return this.#x * this.#size }
     get yOffset(){ return this.#y * this.#size }
     get x(){ return this.#x }
     get y(){ return this.#y}
+    get hue(){ return this.#hue }
+
+    set hue(value){ this.#hue = value }
+    
+    beforeDraw(){ return null }
     
     draw(context){
-        context.fillStyle = `hsl(${this.#hue}, ${SATURATION}%, ${LIGHTNESS}%)`
+        this.beforeDraw()
+        context.fillStyle = `hsl(${this.#hue}, ${this.#saturation}%, ${this.#lightness}%)`
         context.fillRect(this.xOffset, this.yOffset, this.#size, this.#size)
     }
 
     clickOn(context){
-        console.log(`clicked on ${this.x}, ${this.y}`)
-        this.#hue++
         this.draw(context)
     }
 

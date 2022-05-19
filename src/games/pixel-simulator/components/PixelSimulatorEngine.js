@@ -1,6 +1,13 @@
-export default class PixelSimulatorEngine{
+class PixelSimulatorEngine{
 
     constructor(){
         
     }
+
+    updateValues(){
+        
+    }
+
 }
+
+export default PixelSimulatorEngine
