@@ -14,15 +14,24 @@ export default class GridCell{
         this.#x = x
         this.#y = y
         this.#size = size
-        this.#hue = HUE_MIN       
+        this.#hue = HUE_MIN
+        this.hydration = 100       
     }
 
     get xOffset(){ return this.#x * this.#size }
     get yOffset(){ return this.#y * this.#size }
-
+    get x(){ return this.#x }
+    get y(){ return this.#y}
+    
     draw(context){
         context.fillStyle = `hsl(${this.#hue}, ${SATURATION}%, ${LIGHTNESS}%)`
         context.fillRect(this.xOffset, this.yOffset, this.#size, this.#size)
+    }
+
+    clickOn(context){
+        console.log(`clicked on ${this.x}, ${this.y}`)
+        this.#hue++
+        this.draw(context)
     }
 
 }

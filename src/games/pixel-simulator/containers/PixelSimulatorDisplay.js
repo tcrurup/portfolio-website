@@ -4,7 +4,7 @@ import GridCell from "../components/GridCell.js";
 const CELL_PIXEL_SIZE = 16;
 const CELL_HEIGHT_COUNT = 42;     //1080
 const CELL_WIDTH_COUNT = 56;      //1920
-const DEBUG = true;
+const DEBUG = false;
 
 export default class PixelSimulatorDisplay{
 
@@ -27,14 +27,43 @@ export default class PixelSimulatorDisplay{
 
     initialize(){
         this.#grid = new Grid(CELL_WIDTH_COUNT, CELL_HEIGHT_COUNT, CELL_PIXEL_SIZE)
-        if(DEBUG){ this.drawGrid() }
-        this.draw()        
+        this.element.addEventListener("mousedown", this.onMouseDown.bind(this) )
+        this.draw()  
+        if(DEBUG){ this.drawGrid() }      
     }
     
     draw = () => this.#grid.drawToCanvas(this.context)
 
+    logMousePos(event){
+        
+        const convert = coord => (Math.ceil(Math.round(coord) / CELL_PIXEL_SIZE))
+        const coords = {
+            x: convert(event.offsetX),
+            y: convert(event.offsetY)
+        }
+        console.log(coords)
+        
+    } 
+
+    onMouseDown = event => {
+        const coords = this.getCoordsFromEvent(event)
+        console.log(coords)
+        this.#grid.clickOn(coords, this.context)
+    }
+
+    getCoordsFromEvent(event){
+        const convert = coord => (Math.floor(Math.round(coord) / CELL_PIXEL_SIZE))
+        return {
+            x: convert(event.offsetX),
+            y: convert(event.offsetY)
+        }
+    }
+
+
+
     drawGrid(){
         //Draw horizontal lines
+        this.context.fillStyle = "black"
         for(let i=0; i< this.height; i+=CELL_PIXEL_SIZE){
             this.context.fillRect(0, i, this.width, 1)
         }

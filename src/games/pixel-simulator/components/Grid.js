@@ -6,7 +6,6 @@ class Grid{
     #height
     #pixelSize
     #gridCells
-    #sprites
     
     constructor(width, height, pixelSize){
         this.#width = width
@@ -28,6 +27,14 @@ class Grid{
         }
     }
 
+    clickOn(coords, context){
+        let target = this.#gridCells.filter(cell => cell.x == coords.x).filter(cell => cell.y == coords.y)
+        if(target.length > 0){
+            target[0].clickOn(context)
+        }
+    }
+
+    
 
 }
 
