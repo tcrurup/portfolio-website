@@ -1,26 +1,29 @@
-import Grid from "../components/Grid.js";
-import GridCell from "../components/GridCell.js";
+import DisplayElement from "../components/DisplayElement.js";
 
 const CELL_PIXEL_SIZE = 16;
 const CELL_HEIGHT_COUNT = 42;     //1080
 const CELL_WIDTH_COUNT = 56;      //1920
 const DEBUG = false;
 
-export default class PixelSimulatorDisplay{
+const opt = {
+    width: "80px"
+}
 
-    #displayElement
+export default class PixelSimulatorDisplay extends DisplayElement{
+
     #grid
 
     constructor(){
-        let elem = document.createElement("canvas")
-        elem.width= this.width
-        elem.height=this.height
-        elem.className = "pixel-simulator-display"
-        this.#displayElement = elem
+        super("canvas")
+        const opts = {
+            width: CELL_PIXEL_SIZE * CELL_WIDTH_COUNT,
+            height: CELL_PIXEL_SIZE * CELL_HEIGHT_COUNT,
+            className: "pixel-simulator-display"
+        }
+        this.setElementAttributes(opts)
         this.initialize()
     }
 
-    get element(){ return this.#displayElement }
     get context(){ return this.element.getContext('2d')}
     get height(){ return CELL_PIXEL_SIZE * CELL_HEIGHT_COUNT }
     get width(){ return CELL_PIXEL_SIZE * CELL_WIDTH_COUNT }
