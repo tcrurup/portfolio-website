@@ -18,7 +18,10 @@ class PixelSimulatorEngine{
         
     }
 
-    getCoordsFromEvent(event){
+    get displayElement(){ return this.#displayObject.element }
+    get canvasContext(){ return this.#displayObject.context }
+
+    getCoordsFromEvent(event){                                                              //Returns the coordinates of the cell that was clicked on
         const convert = coord => (Math.floor(Math.round(coord) / CELL_PIXEL_SIZE))
         return {
             x: convert(event.offsetX),
@@ -26,10 +29,7 @@ class PixelSimulatorEngine{
         }
     }
 
-    get displayElement(){ return this.#displayObject.element }
-    get canvasContext(){ return this.#displayObject.context }
-
-    draw = () => this.#grid.drawToCanvas(this.canvasContext)
+    draw = () => this.#grid.drawToCanvas(this.canvasContext)                                //Draws the current grid onto the canvas
 
     addEventListeners(){
         this.displayElement.addEventListener("mousedown", this.handleClick.bind(this))
@@ -37,11 +37,13 @@ class PixelSimulatorEngine{
 
     handleClick = event => {
         const coords = this.getCoordsFromEvent(event)
-        this.#grid.clickOn(coords, this.canvasContext)
+        let cell = this.#grid.getGridCell(coords)
+        cell.hue += 2
+        cell.draw(this.canvasContext)
     }
 
-    sendSmallComet(targetX, targetY){
-        
+    sendSmallComet(coords){
+
     }
 }
 

@@ -41,22 +41,6 @@ export default class PixelSimulatorDisplay{
         
     } 
 
-    onMouseDown = event => {
-        const coords = this.getCoordsFromEvent(event)
-        console.log(coords)
-        this.#grid.clickOn(coords, this.context)
-    }
-
-    getCoordsFromEvent(event){
-        const convert = coord => (Math.floor(Math.round(coord) / CELL_PIXEL_SIZE))
-        return {
-            x: convert(event.offsetX),
-            y: convert(event.offsetY)
-        }
-    }
-
-
-
     drawGrid(){
         //Draw horizontal lines
         this.context.fillStyle = "black"

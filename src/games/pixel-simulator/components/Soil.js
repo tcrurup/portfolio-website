@@ -10,9 +10,6 @@ class Soil extends GridCell{
         this.hydration = 100       
     }
 
-    beforeDraw(){
-        this.hue += 2
-    }
 
 }
 

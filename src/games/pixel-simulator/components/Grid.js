@@ -16,6 +16,10 @@ class Grid{
         this.initialize()
     }
 
+    getGridCell(coords){
+        return this.#gridCells.filter(cell => cell.x == coords.x).filter(cell => cell.y == coords.y)[0]
+    }
+
     drawToCanvas(context){
         this.#gridCells.forEach(cell => cell.draw(context))
     }
@@ -27,16 +31,6 @@ class Grid{
             }
         }
     }
-
-    clickOn(coords, context){
-        let target = this.#gridCells.filter(cell => cell.x == coords.x).filter(cell => cell.y == coords.y)
-        if(target.length > 0){
-            target[0].clickOn(context)
-        }
-    }
-
-    
-
 }
 
 export default Grid
