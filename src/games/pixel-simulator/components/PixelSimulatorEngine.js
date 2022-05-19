@@ -38,12 +38,12 @@ class PixelSimulatorEngine{
     handleClick = event => {
         const coords = this.getCoordsFromEvent(event)
         this.#grid.getCircle(coords, 5).forEach(cell =>{
-            cell.hue = 0
+            cell.lowerBy(10)
         })
         this.draw()
     }
 
-    sendSmallComet(coords){
+    spawnComet(coords, radius){
 
     }
 }

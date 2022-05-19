@@ -27,6 +27,7 @@ export default class GridCell{
     get hue(){ return this.#hue }
 
     set hue(value){ this.#hue = value }
+    set lightness(value){ this.#lightness = value }
     
     beforeDraw(){ return null }
 
