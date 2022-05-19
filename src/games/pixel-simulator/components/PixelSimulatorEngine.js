@@ -37,9 +37,10 @@ class PixelSimulatorEngine{
 
     handleClick = event => {
         const coords = this.getCoordsFromEvent(event)
-        let cell = this.#grid.getGridCell(coords)
-        cell.hue += 2
-        cell.draw(this.canvasContext)
+        this.#grid.getCircle(coords, 5).forEach(cell =>{
+            cell.hue = 0
+        })
+        this.draw()
     }
 
     sendSmallComet(coords){

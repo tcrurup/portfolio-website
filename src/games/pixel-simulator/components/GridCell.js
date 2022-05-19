@@ -29,6 +29,12 @@ export default class GridCell{
     set hue(value){ this.#hue = value }
     
     beforeDraw(){ return null }
+
+    getDistanceFrom(coords){
+        let deltaX = Math.abs(this.x - coords.x)
+        let deltaY = Math.abs(this.y - coords.y)
+        return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2))
+    }
     
     draw(context){
         this.beforeDraw()

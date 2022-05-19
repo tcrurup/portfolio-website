@@ -20,6 +20,10 @@ class Grid{
         return this.#gridCells.filter(cell => cell.x == coords.x).filter(cell => cell.y == coords.y)[0]
     }
 
+    getCircle(centerCoords, radius){
+        return this.#gridCells.filter(cell => cell.getDistanceFrom(centerCoords) < radius)
+    }
+
     drawToCanvas(context){
         this.#gridCells.forEach(cell => cell.draw(context))
     }
