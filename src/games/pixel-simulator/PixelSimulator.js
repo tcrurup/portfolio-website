@@ -7,23 +7,16 @@ import PixelSimulatorDisplay from "./containers/PixelSimulatorDisplay.js"
 export default class PixelSimulator extends PixelSimulatorComponent{
 
     #engine                     //Game engine
-    #display                    //View of the game board
-    #container                  //The div element that 
-    #parentElement              //The element that contains this objects container
+    #parentElement              //The element that contains this application
 
     constructor(parentElement){
         super()
-        this.#engine = new PixelSimulatorEngine(parentElement)
-        this.#display = new PixelSimulatorDisplay()
+        this.#engine = new PixelSimulatorEngine()
         this.#parentElement = parentElement
         this.initialize()
     }
 
-    addToParentElement(elem){
-        this.#parentElement.appendChild(elem)
-    }
-
     initialize(){
-        this.addToParentElement(this.#display.element)
+        this.#parentElement.appendChild(this.#engine.displayElement)      //Add the viewfrom the game engine to the dom
     }
 }

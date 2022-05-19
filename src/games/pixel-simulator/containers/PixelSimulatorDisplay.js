@@ -26,13 +26,9 @@ export default class PixelSimulatorDisplay{
     get width(){ return CELL_PIXEL_SIZE * CELL_WIDTH_COUNT }
 
     initialize(){
-        this.#grid = new Grid(CELL_WIDTH_COUNT, CELL_HEIGHT_COUNT, CELL_PIXEL_SIZE)
-        this.element.addEventListener("mousedown", this.onMouseDown.bind(this) )
-        this.draw()  
         if(DEBUG){ this.drawGrid() }      
     }
     
-    draw = () => this.#grid.drawToCanvas(this.context)
 
     logMousePos(event){
         
