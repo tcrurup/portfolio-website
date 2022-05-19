@@ -24,16 +24,8 @@ export default class PixelSimulatorDisplay extends DisplayElement{
         this.initialize()
     }
 
-    get context(){ return this.element.getContext('2d')}
-    get height(){ return CELL_PIXEL_SIZE * CELL_HEIGHT_COUNT }
-    get width(){ return CELL_PIXEL_SIZE * CELL_WIDTH_COUNT }
-
     initialize(){
         if(DEBUG){ this.drawGrid() }      
-    }
-    
-    addEventToElement(){
-
     }
 
     logMousePos(event){
@@ -59,10 +51,6 @@ export default class PixelSimulatorDisplay extends DisplayElement{
             this.context.fillRect(i, 0, 1, this.height)
         }
 
-    }
-
-    update(){
-        this.#grid.forEach(array => array.forEach())
     }
 
     mouseHoverCellData(output){

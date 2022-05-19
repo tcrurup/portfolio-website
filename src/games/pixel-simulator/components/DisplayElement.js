@@ -11,6 +11,7 @@ class DisplayElement{
     }
 
     get element(){ return this.#displayElement }
+    get context(){ return this.#displayElement.getContext('2d')}
 }
 
 export default DisplayElement
