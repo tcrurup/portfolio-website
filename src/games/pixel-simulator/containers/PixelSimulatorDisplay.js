@@ -5,10 +5,6 @@ const CELL_HEIGHT_COUNT = 42;     //1080
 const CELL_WIDTH_COUNT = 56;      //1920
 const DEBUG = false;
 
-const opt = {
-    width: "80px"
-}
-
 export default class PixelSimulatorDisplay extends DisplayElement{
 
     #grid
@@ -39,6 +35,22 @@ export default class PixelSimulatorDisplay extends DisplayElement{
         
     } 
 
+    
+
+    activateDebugMode(){
+        this.drawGrid()
+
+    }
+
+    mouseHoverCellData(output){
+        
+    }
+
+    static create(){
+        return new PixelSimulatorDisplay()
+    }
+
+    //DEBUG FUNCTIONS
     drawGrid(){
         //Draw horizontal lines
         this.context.fillStyle = "black"
@@ -51,14 +63,6 @@ export default class PixelSimulatorDisplay extends DisplayElement{
             this.context.fillRect(i, 0, 1, this.height)
         }
 
-    }
-
-    mouseHoverCellData(output){
-        
-    }
-
-    static create(){
-        return new PixelSimulatorDisplay()
     }
 
 }

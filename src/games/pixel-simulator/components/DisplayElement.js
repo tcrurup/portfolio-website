@@ -10,6 +10,10 @@ class DisplayElement{
         Object.keys(attrHash).forEach( key => this.#displayElement.setAttribute(key, attrHash[key]))
     }
 
+    addEventToElement(eventType, eventFunc){
+        this.#displayElement.addEventListener(eventType, eventFunc)
+    }
+
     get element(){ return this.#displayElement }
     get context(){ return this.#displayElement.getContext('2d')}
 }
