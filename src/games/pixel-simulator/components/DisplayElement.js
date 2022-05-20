@@ -15,6 +15,10 @@ class DisplayElement{
         this.#displayElement.addEventListener(eventType, eventFunc)
     }
 
+    appendToElement(elem){
+        this.element.appendChild(elem)
+    }
+
     get element(){ return this.#displayElement }
     get context(){ return this.#displayElement.getContext('2d')}
 }

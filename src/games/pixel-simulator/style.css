@@ -1,9 +1,15 @@
-.pixel-simulator-display{
-    width: 800px;
-    height: 800px;
-    background-color: white;
-}
-
 body{
     background-color: rgb(53, 49, 49);
+}
+
+.debug-display{
+    width: 300px;
+    height: 50vw;
+    background: white;
+}
+
+.pixel-simulator-app{
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
 }

@@ -2,24 +2,25 @@ import "./style.css" assert { type: 'css'}
 
 import PixelSimulatorComponent from './components/PixelSimulatorComponent.js'
 import PixelSimulatorEngine from "./components/PixelSimulatorEngine.js"
-import PixelSimulatorDisplay from "./containers/PixelSimulatorDisplay.js"
-import DebugDisplay from "./containers/DebugDisplay.js"
+import DisplayElement from "./components/DisplayElement.js"
 
-export default class PixelSimulator extends PixelSimulatorComponent{
+
+export default class PixelSimulator extends DisplayElement{
 
     #engine                     //Game engine
-    #parentElement              //The element that contains this application
-
 
     constructor(parentElement){
         super()
+        const opts = {
+            class: "pixel-simulator-app"
+        }
+        this.setElementAttributes(opts)
+        parentElement.appendChild(this.element)
         this.#engine = new PixelSimulatorEngine()
-        this.#parentElement = parentElement
         this.initialize()
     }
 
     initialize(){
-        const elements = this.#engine.allElements
-        elements.forEach(elem => this.#parentElement.appendChild(elem)) 
+        this.#engine.allElements.forEach(elem => this.appendToElement(elem)) 
     }
 }

@@ -14,7 +14,7 @@ export default class PixelSimulatorDisplay extends DisplayElement{
         const opts = {
             width: CELL_PIXEL_SIZE * CELL_WIDTH_COUNT,
             height: CELL_PIXEL_SIZE * CELL_HEIGHT_COUNT,
-            className: "pixel-simulator-display"
+            class: "pixel-simulator-display"
         }
         this.setElementAttributes(opts)
         this.initialize()
