@@ -1,9 +1,5 @@
 import DisplayElement from "../components/DisplayElement.js";
-
-const CELL_PIXEL_SIZE = 16;
-const CELL_HEIGHT_COUNT = 42;     //1080
-const CELL_WIDTH_COUNT = 56;      //1920
-const DEBUG = true;
+import { GRID_CONFIG } from "../config.js";
 
 export default class PixelSimulatorDisplay extends DisplayElement{
 
@@ -12,8 +8,8 @@ export default class PixelSimulatorDisplay extends DisplayElement{
     constructor(){
         super("canvas")
         const opts = {
-            width: CELL_PIXEL_SIZE * CELL_WIDTH_COUNT,
-            height: CELL_PIXEL_SIZE * CELL_HEIGHT_COUNT,
+            width: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_WIDTH_COUNT,
+            height: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_HEIGHT_COUNT,
             class: "pixel-simulator-display"
         }
         this.setElementAttributes(opts)
@@ -21,7 +17,7 @@ export default class PixelSimulatorDisplay extends DisplayElement{
     }
 
     initialize(){
-        if(DEBUG){ this.activateDebugMode() }      
+        if(GRID_CONFIG.DEBUG){ this.activateDebugMode() }      
     }
 
     activateDebugMode(){
@@ -37,19 +33,19 @@ export default class PixelSimulatorDisplay extends DisplayElement{
     drawGrid(){
         //Draw horizontal lines
         this.context.fillStyle = "black"
-        for(let i=0; i< this.height; i+=CELL_PIXEL_SIZE){
+        for(let i=0; i< this.height; i+=GRID_CONFIG.CELL_PIXEL_SIZE){
             this.context.fillRect(0, i, this.width, 1)
         }
 
         //Draw vertical lines
-        for(let i=0; i< this.width; i+=CELL_PIXEL_SIZE){
+        for(let i=0; i< this.width; i+=GRID_CONFIG.CELL_PIXEL_SIZE){
             this.context.fillRect(i, 0, 1, this.height)
         }
 
     }
 
     handleMouseMove = event => {
-        const convert = coord => (Math.ceil(Math.round(coord) / CELL_PIXEL_SIZE))
+        const convert = coord => (Math.ceil(Math.round(coord) / GRID_CONFIG.CELL_PIXEL_SIZE))
         const coords = {
             x: convert(event.offsetX),
             y: convert(event.offsetY)
