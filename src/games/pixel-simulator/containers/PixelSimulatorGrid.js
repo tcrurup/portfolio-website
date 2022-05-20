@@ -13,6 +13,7 @@ class PixelSimulatorGrid extends DisplayElement{
 
     #grid     
     #selectedCell                                                                                                              //The data 
+    #debugElement
 
     constructor(){
         super("canvas", options)
@@ -21,7 +22,7 @@ class PixelSimulatorGrid extends DisplayElement{
             GRID_CONFIG.CELL_HEIGHT_COUNT, 
             GRID_CONFIG.CELL_PIXEL_SIZE
         )
-        
+        this.#debugElement = null
         this.onLeftClick = this.handleLeftClick
         this.onRightClick = this.handleRightClick
     }
@@ -30,6 +31,10 @@ class PixelSimulatorGrid extends DisplayElement{
     get width(){ return GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_WIDTH_COUNT }
     get height(){ return GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_HEIGHT_COUNT }
 
+    get selectedCell(){ return this.#selectedCell }
+
+    set debugElement(element){ this.#debugElement = element }
+
     static getCoordsFromEvent(event){                                                              //Returns the coordinates of the cell that was clicked on
         const convert = coord => Math.floor((Math.round(coord) / GRID_CONFIG.CELL_PIXEL_SIZE))
         return {
@@ -37,7 +42,15 @@ class PixelSimulatorGrid extends DisplayElement{
             y: convert(event.offsetY)
         }
     }
-    
+
+    log = string => {
+        if(this.#debugElement){
+            this.#debugElement.innerHTML = string
+        } else {
+            console.log(string)
+        }
+    }
+
     draw = () => {
         this.#grid.drawToCanvas(this.context)
         if(GRID_CONFIG.DEBUG){ this.drawGrid() }
@@ -46,7 +59,7 @@ class PixelSimulatorGrid extends DisplayElement{
     handleRightClick = event =>{
         const coords = PixelSimulatorGrid.getCoordsFromEvent(event)
         this.#selectedCell = this.gridData.getGridCell(coords)
-        if(GRID_CONFIG.DEBUG){console.log(`Selecting cell at x:${coords.x} y:${coords.y} | ${this.#grid.getGridCell(coords)}`)}
+        if(GRID_CONFIG.DEBUG){this.log(`Selecting cell at x:${coords.x} y:${coords.y} | ${this.#grid.getGridCell(coords)}`)}
     }
 
     handleLeftClick = event => {

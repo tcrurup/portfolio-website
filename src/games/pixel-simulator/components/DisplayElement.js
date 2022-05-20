@@ -1,6 +1,7 @@
 class DisplayElement{
 
     #displayElement
+    #log
     #onRightClick
     #onLeftClick
     #onMMBClick
@@ -11,6 +12,8 @@ class DisplayElement{
         this.setElementAttributes(options)
         this.disableContextMenu()
     }
+
+    log = text => console.log(text)
 
     setElementAttributes(attrHash){
         Object.keys(attrHash).forEach( key => this.#displayElement.setAttribute(key, attrHash[key]))
@@ -34,6 +37,8 @@ class DisplayElement{
     }
     set onRightClick(func){ this.#onRightClick=func }
     set onMMBClick(func){ this.#onMMBClick=func }
+
+    set innerHTML(html){ this.element.innerHTML = html }
     
     handleMouseDown = event => {
         switch(event.button){
@@ -52,6 +57,7 @@ class DisplayElement{
     disableContextMenu(){
         this.element.addEventListener( "contextmenu", event => event.preventDefault() )
     }
+
 
 }
 

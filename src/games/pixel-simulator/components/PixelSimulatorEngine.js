@@ -12,8 +12,10 @@ class PixelSimulatorEngine{
     #debugDisplay
     
     constructor(){
-        this.#pixelSimulatorGrid = new PixelSimulatorGrid()                                         //Create the view for the grid used in the game
-        this.#debugDisplay = new DebugDisplay()                                                     //Create a debug display element
+        this.#pixelSimulatorGrid = new PixelSimulatorGrid()
+        this.#debugDisplay = new DebugDisplay()                                                         //Create a debug display element
+        this.#pixelSimulatorGrid.debugElement = this.#debugDisplay.element
+
         this.#elements = [
             this.#pixelSimulatorGrid.element, 
             this.#debugDisplay.element
@@ -23,7 +25,9 @@ class PixelSimulatorEngine{
 
     get elementsToAppend(){ return this.#elements }
 
-    draw = () => this.#pixelSimulatorGrid.draw()                             //Draws the current grid onto the canvas
+    draw = () => {
+        this.#pixelSimulatorGrid.draw()                             //Draws the current grid onto the canvas
+    }
 
 }
 
