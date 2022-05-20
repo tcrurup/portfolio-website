@@ -5,6 +5,7 @@ import { GRID_CONFIG, APP_CONFIG } from "../config.js";
 const options = {
     width: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_WIDTH_COUNT,
     height: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_HEIGHT_COUNT,
+    style: `max-height: ${GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_HEIGHT_COUNT}px`,
     class: "pixel-simulator-display"
 }
 
@@ -20,7 +21,6 @@ class PixelSimulatorGrid extends DisplayElement{
             GRID_CONFIG.CELL_HEIGHT_COUNT, 
             GRID_CONFIG.CELL_PIXEL_SIZE
         )
-        if(GRID_CONFIG.DEBUG){ this.drawGrid() }
         
         this.onLeftClick = this.handleLeftClick
         this.onRightClick = this.handleRightClick
@@ -31,7 +31,7 @@ class PixelSimulatorGrid extends DisplayElement{
     get height(){ return GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_HEIGHT_COUNT }
 
     static getCoordsFromEvent(event){                                                              //Returns the coordinates of the cell that was clicked on
-        const convert = coord => (Math.floor(Math.round(coord) / GRID_CONFIG.CELL_PIXEL_SIZE))
+        const convert = coord => Math.floor((Math.round(coord) / GRID_CONFIG.CELL_PIXEL_SIZE))
         return {
             x: convert(event.offsetX),
             y: convert(event.offsetY)
@@ -42,8 +42,6 @@ class PixelSimulatorGrid extends DisplayElement{
         this.#grid.drawToCanvas(this.context)
         if(GRID_CONFIG.DEBUG){ this.drawGrid() }
     } 
-
-    
 
     handleRightClick = event =>{
         const coords = PixelSimulatorGrid.getCoordsFromEvent(event)
