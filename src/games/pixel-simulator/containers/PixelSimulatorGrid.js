@@ -1,6 +1,6 @@
 import DisplayElement from "../components/DisplayElement.js";
 import Grid from "../components/Grid.js";
-import { GRID_CONFIG } from "../config.js";
+import { GRID_CONFIG, APP_CONFIG } from "../config.js";
 
 const options = {
     width: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_WIDTH_COUNT,
@@ -39,17 +39,17 @@ class PixelSimulatorGrid extends DisplayElement{
     }
 
     addEventListeners(){
-        this.onMouseDown = this.handleClick.bind(this)
-        this.onContextMenu = this.handleRightClick.bind(this)
+        this.onLeftClick = this.handleLeftClick
+        this.onRightClick = this.handleRightClick
     }
 
     handleRightClick = event =>{
         event.preventDefault()
-        console.log("right click")
+        if(APP_CONFIG.DEBUG){console.log("PixelSimulatorGrid right click event triggered")}
     }
 
-    handleClick = event => {
-        console.log(event.button)
+    handleLeftClick = event => {
+        if(APP_CONFIG.DEBUG){console.log("PixelSimulatorGrid left click event triggered")}
         const coords = this.getCoordsFromEvent(event)
         this.gridData.getCircle(coords, 5).forEach(cell =>{
             cell.lowerBy(10)

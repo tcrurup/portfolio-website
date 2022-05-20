@@ -1,10 +1,15 @@
 class DisplayElement{
 
     #displayElement
+    #onRightClick
+    #onLeftClick
+    #onMMBClick
 
     constructor(elementTag = "div", options = {}){
         this.#displayElement = document.createElement(elementTag)
+        this.#displayElement.addEventListener("mousedown", this.handleMouseDown.bind(this))
         this.setElementAttributes(options)
+        this.disableContextMenu()
     }
 
     setElementAttributes(attrHash){
@@ -23,9 +28,31 @@ class DisplayElement{
     get element(){ return this.#displayElement }
     get context(){ return this.#displayElement.getContext('2d')}
 
-    set onMouseDown(func){ this.#displayElement.addEventListener("mousedown", func) }
-    set onContextMenu(func){ this.#displayElement.addEventListener("contextmenu", func)}
+
+    set onLeftClick(func){ 
+        this.#onLeftClick=func
+    }
+    set onRightClick(func){ this.#onRightClick=func }
+    set onMMBClick(func){ this.#onMMBClick=func }
     
+    handleMouseDown = event => {
+        switch(event.button){
+            case 0:       //Left click
+                if(this.#onLeftClick){ this.#onLeftClick(event) }                
+                break;
+            case 1:       //Middle mouse button click
+                if(this.#onMMBClick){ this.#onMMBClick(event) }
+                break;
+            case 2:       //Right click
+                if(this.#onRightClick){ this.#onRightClick(event)} 
+                break;
+        }
+    }
+
+    disableContextMenu(){
+        this.element.addEventListener( "contextmenu", event => event.preventDefault() )
+    }
+
 }
 
 export default DisplayElement
