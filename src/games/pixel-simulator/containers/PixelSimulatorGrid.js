@@ -10,7 +10,8 @@ const options = {
 
 class PixelSimulatorGrid extends DisplayElement{
 
-    #grid                                                                                                                   //The data 
+    #grid     
+    #selectedCell                                                                                                              //The data 
 
     constructor(){
         super("canvas", options)
@@ -20,15 +21,19 @@ class PixelSimulatorGrid extends DisplayElement{
             GRID_CONFIG.CELL_PIXEL_SIZE
         )
         if(GRID_CONFIG.DEBUG){ this.drawGrid() }
-        this.addEventListeners()
+        
+        this.onLeftClick = this.handleLeftClick
+        this.onRightClick = this.handleRightClick
     }
 
     get gridData(){ return this.#grid }
+    get width(){ return GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_WIDTH_COUNT }
+    get height(){ return GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_HEIGHT_COUNT }
 
-
-
-
-    draw = () => this.#grid.drawToCanvas(this.context) 
+    draw = () => {
+        this.#grid.drawToCanvas(this.context)
+        if(GRID_CONFIG.DEBUG){ this.drawGrid() }
+    } 
 
     getCoordsFromEvent(event){                                                              //Returns the coordinates of the cell that was clicked on
         const convert = coord => (Math.floor(Math.round(coord) / GRID_CONFIG.CELL_PIXEL_SIZE))
@@ -38,14 +43,9 @@ class PixelSimulatorGrid extends DisplayElement{
         }
     }
 
-    addEventListeners(){
-        this.onLeftClick = this.handleLeftClick
-        this.onRightClick = this.handleRightClick
-    }
-
     handleRightClick = event =>{
-        event.preventDefault()
-        if(APP_CONFIG.DEBUG){console.log("PixelSimulatorGrid right click event triggered")}
+        if(GRID_CONFIG.DEBUG){console.log("PixelSimulatorGrid right click event triggered")}
+        
     }
 
     handleLeftClick = event => {
