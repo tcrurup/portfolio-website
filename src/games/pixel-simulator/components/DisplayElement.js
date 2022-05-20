@@ -2,8 +2,9 @@ class DisplayElement{
 
     #displayElement
 
-    constructor(elementTag = "div"){
+    constructor(elementTag = "div", options = {}){
         this.#displayElement = document.createElement(elementTag)
+        this.setElementAttributes(options)
     }
 
     setElementAttributes(attrHash){

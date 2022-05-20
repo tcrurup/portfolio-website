@@ -1,33 +1,26 @@
 import DisplayElement from "../components/DisplayElement.js";
+import Grid from "../components/Grid.js";
 import { GRID_CONFIG } from "../config.js";
 
-export default class PixelSimulatorDisplay extends DisplayElement{
+const options = {
+    width: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_WIDTH_COUNT,
+    height: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_HEIGHT_COUNT,
+    class: "pixel-simulator-display"
+}
+
+class PixelSimulatorGrid extends DisplayElement{
 
     #grid
 
     constructor(){
-        super("canvas")
-        const opts = {
-            width: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_WIDTH_COUNT,
-            height: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_HEIGHT_COUNT,
-            class: "pixel-simulator-display"
-        }
-        this.setElementAttributes(opts)
-        this.initialize()
+        super("canvas", options)
+        this.#grid = new Grid(GRID_CONFIG.CELL_WIDTH_COUNT, GRID_CONFIG.CELL_HEIGHT_COUNT, GRID_CONFIG.CELL_PIXEL_SIZE)
+        if(GRID_CONFIG.DEBUG){ this.drawGrid() }
     }
 
-    initialize(){
-        if(GRID_CONFIG.DEBUG){ this.activateDebugMode() }      
-    }
+    get gridData(){ return this.#grid }
 
-    activateDebugMode(){
-        this.drawGrid()
-        this.addEventToElement("mousemove", this.handleMouseMove)
-    }
-
-    static create(){
-        return new PixelSimulatorDisplay()
-    }
+    draw = () => this.#grid.drawToCanvas(this.context) 
 
     //DEBUG FUNCTIONS
     drawGrid(){
@@ -54,3 +47,5 @@ export default class PixelSimulatorDisplay extends DisplayElement{
     }
 
 }
+
+export default PixelSimulatorGrid

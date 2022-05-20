@@ -1,4 +1,3 @@
-import GridCell from "./GridCell.js"
 import Soil from './Soil.js'
 
 class Grid{
