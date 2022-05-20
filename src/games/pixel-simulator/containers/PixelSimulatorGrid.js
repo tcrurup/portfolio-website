@@ -16,11 +16,32 @@ class PixelSimulatorGrid extends DisplayElement{
         super("canvas", options)
         this.#grid = new Grid(GRID_CONFIG.CELL_WIDTH_COUNT, GRID_CONFIG.CELL_HEIGHT_COUNT, GRID_CONFIG.CELL_PIXEL_SIZE)
         if(GRID_CONFIG.DEBUG){ this.drawGrid() }
+        this.addEventListeners()
     }
 
     get gridData(){ return this.#grid }
 
     draw = () => this.#grid.drawToCanvas(this.context) 
+
+    getCoordsFromEvent(event){                                                              //Returns the coordinates of the cell that was clicked on
+        const convert = coord => (Math.floor(Math.round(coord) / GRID_CONFIG.CELL_PIXEL_SIZE))
+        return {
+            x: convert(event.offsetX),
+            y: convert(event.offsetY)
+        }
+    }
+
+    addEventListeners(){
+        this.addEventToElement("mousedown", this.handleClick.bind(this))
+    }
+
+    handleClick = event => {
+        const coords = this.getCoordsFromEvent(event)
+        this.gridData.getCircle(coords, 5).forEach(cell =>{
+            cell.lowerBy(10)
+        })
+        this.draw()
+    }
 
     //DEBUG FUNCTIONS
     drawGrid(){

@@ -19,7 +19,7 @@ export default class PixelSimulator extends DisplayElement{
         this.initialize()
     }
 
-    get allElements(){ return this.#engine.allElements }
+    get allElements(){ return this.#engine.elementsToAppend }
     
     initialize(){
         this.allElements.forEach(elem => this.appendToElement(elem)) 
