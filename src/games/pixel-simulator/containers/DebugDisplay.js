@@ -1,16 +1,12 @@
-class DebugDisplay{
+import DisplayElement from "../components/DisplayElement.js"
 
-    #element
-    
+class DebugDisplay extends DisplayElement{
+
     constructor(){
-        this.#element = document.createElement("div")
-        this.#element.className = "debug-display"
+        super()
     }
 
-    get displayElement(){
-        return this.#element
-    }
-
+    
 }
 
 export default DebugDisplay

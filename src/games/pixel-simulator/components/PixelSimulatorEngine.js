@@ -1,4 +1,5 @@
 import PixelSimulatorDisplay from "../containers/PixelSimulatorDisplay.js"
+import DebugDisplay from "../containers/DebugDisplay.js";
 import Grid from "./Grid.js"
 
 
@@ -8,19 +9,27 @@ const CELL_WIDTH_COUNT = 56;
 
 class PixelSimulatorEngine{
 
-    #displayObject
+    #gridDisplay
     #grid
+    #elements
+    #debugDisplay
     
     constructor(){
-        this.#displayObject = new PixelSimulatorDisplay()                                   //Create the view for the application
+        this.#gridDisplay = new PixelSimulatorDisplay()                                   //Create the view for the application
+        this.#debugDisplay = new DebugDisplay()
         this.#grid = new Grid(CELL_WIDTH_COUNT, CELL_HEIGHT_COUNT, CELL_PIXEL_SIZE)
+        this.#elements = [
+            this.#gridDisplay.element, 
+            this.#debugDisplay.element
+        ]
         this.draw()
         this.addEventListeners()
         
     }
+    
 
-    get displayElement(){ return this.#displayObject.element }
-    get canvasContext(){ return this.#displayObject.context }
+    get canvasContext(){ return this.#gridDisplay.context }
+    get allElements(){ return this.#elements }
 
     getCoordsFromEvent(event){                                                              //Returns the coordinates of the cell that was clicked on
         const convert = coord => (Math.floor(Math.round(coord) / CELL_PIXEL_SIZE))
@@ -30,10 +39,16 @@ class PixelSimulatorEngine{
         }
     }
 
+    handleMouseOverGrid = event => {
+        const coords = this.getCoordsFromEvent(event)
+        const cell = this.#grid.getGridCell(coords)
+    }
+
     draw = () => this.#grid.drawToCanvas(this.canvasContext)                                //Draws the current grid onto the canvas
 
     addEventListeners(){
-        this.displayElement.addEventListener("mousedown", this.handleClick.bind(this))
+        this.#gridDisplay.addEventToElement("mousedown", this.handleClick.bind(this))
+        this.#gridDisplay.addEventToElement("mousemove", this.handleMouseOverGrid.bind(this))
     }
 
     handleClick = event => {
@@ -43,6 +58,7 @@ class PixelSimulatorEngine{
         })
         this.draw()
     }
+
 
     
 }

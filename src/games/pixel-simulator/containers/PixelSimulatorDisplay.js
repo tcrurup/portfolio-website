@@ -3,7 +3,7 @@ import DisplayElement from "../components/DisplayElement.js";
 const CELL_PIXEL_SIZE = 16;
 const CELL_HEIGHT_COUNT = 42;     //1080
 const CELL_WIDTH_COUNT = 56;      //1920
-const DEBUG = false;
+const DEBUG = true;
 
 export default class PixelSimulatorDisplay extends DisplayElement{
 
@@ -21,29 +21,12 @@ export default class PixelSimulatorDisplay extends DisplayElement{
     }
 
     initialize(){
-        if(DEBUG){ this.drawGrid() }      
+        if(DEBUG){ this.activateDebugMode() }      
     }
-
-    logMousePos(event){
-        
-        const convert = coord => (Math.ceil(Math.round(coord) / CELL_PIXEL_SIZE))
-        const coords = {
-            x: convert(event.offsetX),
-            y: convert(event.offsetY)
-        }
-        console.log(coords)
-        
-    } 
-
-    
 
     activateDebugMode(){
         this.drawGrid()
-
-    }
-
-    mouseHoverCellData(output){
-        
+        this.addEventToElement("mousemove", this.handleMouseMove)
     }
 
     static create(){
@@ -63,6 +46,15 @@ export default class PixelSimulatorDisplay extends DisplayElement{
             this.context.fillRect(i, 0, 1, this.height)
         }
 
+    }
+
+    handleMouseMove = event => {
+        const convert = coord => (Math.ceil(Math.round(coord) / CELL_PIXEL_SIZE))
+        const coords = {
+            x: convert(event.offsetX),
+            y: convert(event.offsetY)
+        }
+        return coords
     }
 
 }

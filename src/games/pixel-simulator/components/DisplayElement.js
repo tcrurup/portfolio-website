@@ -11,6 +11,7 @@ class DisplayElement{
     }
 
     addEventToElement(eventType, eventFunc){
+        console.log("adding event listener")
         this.#displayElement.addEventListener(eventType, eventFunc)
     }
 
