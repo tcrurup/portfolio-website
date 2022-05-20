@@ -1,13 +1,12 @@
 import "./style.css" assert { type: 'css'}
 
-import PixelSimulatorComponent from './components/PixelSimulatorComponent.js'
 import PixelSimulatorEngine from "./components/PixelSimulatorEngine.js"
 import DisplayElement from "./components/DisplayElement.js"
 
 
 export default class PixelSimulator extends DisplayElement{
 
-    #engine                     //Game engine
+    #engine                                                        //Game engine
 
     constructor(parentElement){
         super()
@@ -20,7 +19,9 @@ export default class PixelSimulator extends DisplayElement{
         this.initialize()
     }
 
+    get allElements(){ return this.#engine.allElements }
+    
     initialize(){
-        this.#engine.allElements.forEach(elem => this.appendToElement(elem)) 
+        this.allElements.forEach(elem => this.appendToElement(elem)) 
     }
 }

@@ -15,8 +15,8 @@ class PixelSimulatorEngine{
     #debugDisplay
     
     constructor(){
-        this.#gridDisplay = new PixelSimulatorDisplay()                                   //Create the view for the application
-        this.#debugDisplay = new DebugDisplay()
+        this.#gridDisplay = new PixelSimulatorDisplay()                                         //Create the view for the grid used in the game
+        this.#debugDisplay = new DebugDisplay()                                                 //Create a debug display element
         this.#grid = new Grid(CELL_WIDTH_COUNT, CELL_HEIGHT_COUNT, CELL_PIXEL_SIZE)
         this.#elements = [
             this.#gridDisplay.element, 
@@ -24,10 +24,8 @@ class PixelSimulatorEngine{
         ]
         this.draw()
         this.addEventListeners()
-        
     }
     
-
     get canvasContext(){ return this.#gridDisplay.context }
     get allElements(){ return this.#elements }
 
