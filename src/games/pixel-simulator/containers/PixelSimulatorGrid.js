@@ -10,16 +10,23 @@ const options = {
 
 class PixelSimulatorGrid extends DisplayElement{
 
-    #grid
+    #grid                                                                                                                   //The data 
 
     constructor(){
         super("canvas", options)
-        this.#grid = new Grid(GRID_CONFIG.CELL_WIDTH_COUNT, GRID_CONFIG.CELL_HEIGHT_COUNT, GRID_CONFIG.CELL_PIXEL_SIZE)
+        this.#grid = new Grid(
+            GRID_CONFIG.CELL_WIDTH_COUNT, 
+            GRID_CONFIG.CELL_HEIGHT_COUNT, 
+            GRID_CONFIG.CELL_PIXEL_SIZE
+        )
         if(GRID_CONFIG.DEBUG){ this.drawGrid() }
         this.addEventListeners()
     }
 
     get gridData(){ return this.#grid }
+
+
+
 
     draw = () => this.#grid.drawToCanvas(this.context) 
 
@@ -32,10 +39,17 @@ class PixelSimulatorGrid extends DisplayElement{
     }
 
     addEventListeners(){
-        this.addEventToElement("mousedown", this.handleClick.bind(this))
+        this.onMouseDown = this.handleClick.bind(this)
+        this.onContextMenu = this.handleRightClick.bind(this)
+    }
+
+    handleRightClick = event =>{
+        event.preventDefault()
+        console.log("right click")
     }
 
     handleClick = event => {
+        console.log(event.button)
         const coords = this.getCoordsFromEvent(event)
         this.gridData.getCircle(coords, 5).forEach(cell =>{
             cell.lowerBy(10)

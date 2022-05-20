@@ -22,6 +22,10 @@ class DisplayElement{
 
     get element(){ return this.#displayElement }
     get context(){ return this.#displayElement.getContext('2d')}
+
+    set onMouseDown(func){ this.#displayElement.addEventListener("mousedown", func) }
+    set onContextMenu(func){ this.#displayElement.addEventListener("contextmenu", func)}
+    
 }
 
 export default DisplayElement
