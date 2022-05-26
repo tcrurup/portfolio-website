@@ -13,3 +13,9 @@ body{
     display: flex;
     justify-content: space-around;
 }
+
+.user-interface{
+    width: 200px;
+    height: 50vh;
+    background: white;
+}

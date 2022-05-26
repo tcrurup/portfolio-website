@@ -25,6 +25,8 @@ export default class GridCell{
     get x(){ return this.#x }
     get y(){ return this.#y}
     get hue(){ return this.#hue }
+    get saturation(){ return this.#saturation }
+    get lightness(){ return this.#lightness }
 
     set hue(value){ this.#hue = value }
     set lightness(value){ this.#lightness = value }
@@ -37,6 +39,16 @@ export default class GridCell{
         return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2))
     }
     
+    getCellDataAsDiv(additionalDivs = ""){
+        return `
+            <div>
+                x:${this.x}   y:${this.y} <br>
+                hsl: (${this.hue}, ${this.saturation}%, ${this.lightness}%) <br>
+                ${additionalDivs}
+            </div>        
+        `
+    }
+
     draw(context){
         this.beforeDraw()
         context.fillStyle = `hsl(${this.#hue}, ${this.#saturation}%, ${this.#lightness}%)`

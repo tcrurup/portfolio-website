@@ -1,33 +1,17 @@
 import PixelSimulatorGrid from "../containers/PixelSimulatorGrid.js"
 import DebugDisplay from "../containers/DebugDisplay.js";
-import Grid from "./Grid.js"
-
-
-const CELL_PIXEL_SIZE = 16;
+import { APP_CONFIG } from "../config.js";
 
 class PixelSimulatorEngine{
 
-    #pixelSimulatorGrid
-    #elements
-    #debugDisplay
+    #parentElement          //Element that holds all the view elements associated with this object
+    #pixelSimulatorGrid     //The grid that holds all the game data along with the datas view
+    #debugDisplay           //Where debug information will be sent when gathered
     
     constructor(){
-        this.#pixelSimulatorGrid = new PixelSimulatorGrid()
-        this.#debugDisplay = new DebugDisplay()                                                         //Create a debug display element
-        this.#pixelSimulatorGrid.debugElement = this.#debugDisplay.element
-
-        this.#elements = [
-            this.#pixelSimulatorGrid.element, 
-            this.#debugDisplay.element
-        ]
-        this.draw()
+        //if(APP_CONFIG.DEBUG){ this.#activateDebugMode() }                //Activate debug mode if enabled in configuration                                          
     }
 
-    get elementsToAppend(){ return this.#elements }
-
-    draw = () => {
-        this.#pixelSimulatorGrid.draw()                             //Draws the current grid onto the canvas
-    }
 
 }
 

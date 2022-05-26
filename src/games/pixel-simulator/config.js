@@ -8,3 +8,12 @@ export const GRID_CONFIG = {
 export const APP_CONFIG = {
     DEBUG: true
 }
+
+export const SOIL_CONFIG = {
+    HUE_MIN : 15,
+    HUE_MAX : 120,
+    MIN_LIGHT : 30,
+    MAX_LIGHT : 50,
+    DEFAULT_ALTITUDE : 100,
+    MIN_ALTITUDE : 10
+}

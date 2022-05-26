@@ -2,6 +2,10 @@ import DisplayElement from "../components/DisplayElement.js";
 import Grid from "../components/Grid.js";
 import { GRID_CONFIG, APP_CONFIG } from "../config.js";
 
+const DEFAULT_SATURATION = 0
+const DEFAULT_LIGHTNESS = 100
+const DEFAULT_HUE = 0
+
 const options = {
     width: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_WIDTH_COUNT,
     height: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_HEIGHT_COUNT,
@@ -25,6 +29,7 @@ class PixelSimulatorGrid extends DisplayElement{
         this.#debugElement = null
         this.onLeftClick = this.handleLeftClick
         this.onRightClick = this.handleRightClick
+        this.draw()
     }
 
     get gridData(){ return this.#grid }
@@ -59,7 +64,7 @@ class PixelSimulatorGrid extends DisplayElement{
     handleRightClick = event =>{
         const coords = PixelSimulatorGrid.getCoordsFromEvent(event)
         this.#selectedCell = this.gridData.getGridCell(coords)
-        if(GRID_CONFIG.DEBUG){this.log(`Selecting cell at x:${coords.x} y:${coords.y} | ${this.#grid.getGridCell(coords)}`)}
+        if(GRID_CONFIG.DEBUG){this.log(this.#selectedCell.getCellDataAsDiv())}
     }
 
     handleLeftClick = event => {
