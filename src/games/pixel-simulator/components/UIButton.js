@@ -1,11 +1,14 @@
-class UIButton{
+import InteractableElement from "./InteractableElement.js"
+
+class UIButton extends InteractableElement{
     
     #button
     
     constructor(name, func = () => console.log("No function assigned")){
-        this.#button = document.createElement
+        super("Button")
+        this.innerHTML = name
+        this.onLeftClick = func
     }
 
 }
-
 export default UIButton

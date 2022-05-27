@@ -64,9 +64,7 @@ class GridView extends InteractableElement{
     handleLeftClick = event => {
         if(APP_CONFIG.DEBUG){console.log("GridView left click event triggered")}
         const coords = GridView.getCoordsFromEvent(event)
-        this.#grid.getCircle(coords, 5).forEach(cell =>{
-            cell.lowerBy(10)
-        })
+        this.#grid.action(coords)
         this.draw()
     }
 
