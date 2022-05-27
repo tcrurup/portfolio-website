@@ -1,4 +1,4 @@
-import Soil from './Soil.js'
+import GROUND from './Ground.js'
 
 class Grid{
     
@@ -40,7 +40,7 @@ class Grid{
     initialize(){
         for(let x=0; x< this.#width; x++){
             for(let y=0; y<this.#height; y++){
-                this.#gridCells.push(new Soil(x, y, this.#pixelSize))
+                this.#gridCells.push(new GROUND(x, y, this.#pixelSize))
             }
         }
     }

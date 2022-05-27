@@ -9,7 +9,7 @@ export const APP_CONFIG = {
     DEBUG: true
 }
 
-export const SOIL_CONFIG = {
+export const GROUND_CONFIG = {
     HUE_MIN : 15,
     HUE_MAX : 120,
     MIN_LIGHT : 30,
