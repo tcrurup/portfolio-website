@@ -19,31 +19,22 @@ class Grid{
 
     get allActions(){
         return {
-            "Circle": () => this.action = this.smallCrater,
+            "Small Crater": () => this.action = coords => this.spawnCrater(coords, 5, 10),
+            "Medium Crater": () => this.action = coords => this.spawnCrater(coords, 9, 12),
+            "Large Crater": () => this.action = coords => this.spawnCrater(coords, 13, 14),
             "Reset": () => this.reset()
         }
     }
-
     get action(){ return this.#action }
-
     set action(a){ this.#action = a }
 
     getGridCell = coords => this.#gridCells.filter(cell => cell.x == coords.x).filter(cell => cell.y == coords.y)[0]
+    getCircle = ( centerCoords, radius=5 ) => this.#gridCells.filter(cell => cell.getDistanceFrom(centerCoords) < radius)
+    reset = () => this.#gridCells.forEach(cell => cell.reset())
 
-    getCircle = (centerCoords, radius=5) => this.#gridCells.filter(cell => cell.getDistanceFrom(centerCoords) < radius)
-
-    reset(){
-        this.#gridCells.forEach(cell => cell.reset())
-    }
-
-    smallCrater(coords){
-        this.getCircle(coords, 5).forEach(cell =>{
-            cell.lowerBy(10)
-        })
-    }
+    spawnCrater = ( coords, radius, depth ) => this.getCircle( coords, radius ).forEach( cell =>{ cell.lowerBy(depth) })
     
-    setCurrentAction(key){ this.#action = this.allActions[key] }
-    
+    setCurrentAction( key ){ this.#action = this.allActions[key] }
     drawToCanvas = context => this.#gridCells.forEach(cell => cell.draw(context))
 
     initialize(){
