@@ -1,7 +1,7 @@
-import { GROUND_CONFIG } from "../config.js";
+import { GROUND_CONFIG } from "../../../config.js";
 import GridCell from "./GridCell.js";
 
-class GROUND extends GridCell{
+class Ground extends GridCell{
 
     #altitude
     
@@ -37,4 +37,4 @@ class GROUND extends GridCell{
 
 }
 
-export default GROUND
+export default Ground

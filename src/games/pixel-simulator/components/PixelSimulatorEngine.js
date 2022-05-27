@@ -1,4 +1,4 @@
-import Grid from "./Grid.js"
+import Grid from "./grid/Grid.js"
 import { GRID_CONFIG } from "../config.js"
 
 class PixelSimulatorEngine{

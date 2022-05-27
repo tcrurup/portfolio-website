@@ -1,4 +1,4 @@
-import Grid from "../components/Grid.js";
+import Grid from "../components/grid/Grid.js";
 import GridView from "../views/GridView.js";
 import { GRID_CONFIG } from "../config.js";
 
