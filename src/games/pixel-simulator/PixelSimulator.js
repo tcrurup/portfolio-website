@@ -8,6 +8,10 @@ import Grid from "./components/Grid.js"
 import GridView from "./views/GridView.js"
 import { APP_CONFIG, GRID_CONFIG } from "./config.js"
 
+const options = {
+    class: "pixel-simulator-app"
+}
+
 export default class PixelSimulator extends DisplayElement{
 
     #engine                 //Game engine that will manipulate game data
@@ -17,11 +21,7 @@ export default class PixelSimulator extends DisplayElement{
     #ui                     //The user interface
 
     constructor(parentElement){
-        super()
-        const opts = {
-            class: "pixel-simulator-app"
-        }
-        this.setElementAttributes(opts)
+        super("div", options)
         parentElement.appendChild(this.element)
         this.#engine = new PixelSimulatorEngine()                    
         this.#grid = new Grid(

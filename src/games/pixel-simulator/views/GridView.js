@@ -50,20 +50,20 @@ class GridView extends DisplayElement{
     }
 
     draw = () => {
-        //this.#grid.drawToCanvas(this.context)
+        this.#grid.drawToCanvas(this.context)
         if(GRID_CONFIG.DEBUG){ this.drawGrid() }
     } 
 
     handleRightClick = event =>{
         const coords = GridView.getCoordsFromEvent(event)
-        this.#selectedCell = this.gridData.getGridCell(coords)
+        this.#selectedCell = this.#grid.getGridCell(coords)
         if(GRID_CONFIG.DEBUG){this.log(this.#selectedCell.getCellDataAsDiv())}
     }
 
     handleLeftClick = event => {
         if(APP_CONFIG.DEBUG){console.log("GridView left click event triggered")}
         const coords = GridView.getCoordsFromEvent(event)
-        this.gridData.getCircle(coords, 5).forEach(cell =>{
+        this.#grid.getCircle(coords, 5).forEach(cell =>{
             cell.lowerBy(10)
         })
         this.draw()

@@ -15,17 +15,11 @@ class Grid{
         this.initialize()
     }
 
-    getGridCell(coords){
-        return this.#gridCells.filter(cell => cell.x == coords.x).filter(cell => cell.y == coords.y)[0]
-    }
+    getGridCell = coords => this.#gridCells.filter(cell => cell.x == coords.x).filter(cell => cell.y == coords.y)[0]
 
-    getCircle(centerCoords, radius){
-        return this.#gridCells.filter(cell => cell.getDistanceFrom(centerCoords) < radius)
-    }
+    getCircle = (centerCoords, radius) => this.#gridCells.filter(cell => cell.getDistanceFrom(centerCoords) < radius)
 
-    drawToCanvas(context){
-        this.#gridCells.forEach(cell => cell.draw(context))
-    }
+    drawToCanvas = context => this.#gridCells.forEach(cell => cell.draw(context))
 
     initialize(){
         for(let x=0; x< this.#width; x++){
