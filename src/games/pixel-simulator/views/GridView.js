@@ -1,4 +1,5 @@
 import DisplayElement from "../components/DisplayElement.js";
+import InteractableElement from "../components/InteractableElement.js";
 import Grid from "../components/Grid.js";
 import { GRID_CONFIG, APP_CONFIG } from "../config.js";
 
@@ -10,7 +11,7 @@ const options = {
 }
 
 //RENAME CLASS
-class GridView extends DisplayElement{
+class GridView extends InteractableElement{
 
     #grid     
     #selectedCell                                                                                                              //The data 

@@ -1,10 +1,9 @@
-import DisplayElement from "./DisplayElement.js"
-
-class UIButton extends DisplayElement{
+class UIButton{
+    
+    #button
     
     constructor(name, func = () => console.log("No function assigned")){
-        super("Button")
-        
+        this.#button = document.createElement
     }
 
 }
