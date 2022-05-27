@@ -2,10 +2,6 @@ import DisplayElement from "../components/DisplayElement.js";
 import Grid from "../components/Grid.js";
 import { GRID_CONFIG, APP_CONFIG } from "../config.js";
 
-const DEFAULT_SATURATION = 0
-const DEFAULT_LIGHTNESS = 100
-const DEFAULT_HUE = 0
-
 const options = {
     width: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_WIDTH_COUNT,
     height: GRID_CONFIG.CELL_PIXEL_SIZE * GRID_CONFIG.CELL_HEIGHT_COUNT,
@@ -13,19 +9,16 @@ const options = {
     class: "pixel-simulator-display"
 }
 
-class PixelSimulatorGrid extends DisplayElement{
+//RENAME CLASS
+class GridView extends DisplayElement{
 
     #grid     
     #selectedCell                                                                                                              //The data 
     #debugElement
 
-    constructor(){
+    constructor(grid){
         super("canvas", options)
-        this.#grid = new Grid(
-            GRID_CONFIG.CELL_WIDTH_COUNT, 
-            GRID_CONFIG.CELL_HEIGHT_COUNT, 
-            GRID_CONFIG.CELL_PIXEL_SIZE
-        )
+        this.#grid = grid
         this.#debugElement = null
         this.onLeftClick = this.handleLeftClick
         this.onRightClick = this.handleRightClick
@@ -57,19 +50,19 @@ class PixelSimulatorGrid extends DisplayElement{
     }
 
     draw = () => {
-        this.#grid.drawToCanvas(this.context)
+        //this.#grid.drawToCanvas(this.context)
         if(GRID_CONFIG.DEBUG){ this.drawGrid() }
     } 
 
     handleRightClick = event =>{
-        const coords = PixelSimulatorGrid.getCoordsFromEvent(event)
+        const coords = GridView.getCoordsFromEvent(event)
         this.#selectedCell = this.gridData.getGridCell(coords)
         if(GRID_CONFIG.DEBUG){this.log(this.#selectedCell.getCellDataAsDiv())}
     }
 
     handleLeftClick = event => {
-        if(APP_CONFIG.DEBUG){console.log("PixelSimulatorGrid left click event triggered")}
-        const coords = PixelSimulatorGrid.getCoordsFromEvent(event)
+        if(APP_CONFIG.DEBUG){console.log("GridView left click event triggered")}
+        const coords = GridView.getCoordsFromEvent(event)
         this.gridData.getCircle(coords, 5).forEach(cell =>{
             cell.lowerBy(10)
         })
@@ -102,4 +95,4 @@ class PixelSimulatorGrid extends DisplayElement{
 
 }
 
-export default PixelSimulatorGrid
+export default GridView
