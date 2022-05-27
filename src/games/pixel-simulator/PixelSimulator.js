@@ -4,9 +4,7 @@ import PixelSimulatorEngine from "./components/PixelSimulatorEngine.js"
 import DisplayElement from "./components/DisplayElement.js"
 import DebugDisplay from "./containers/DebugDisplay.js"
 import UserInterface from "./containers/UserInterface.js"
-import Grid from "./components/Grid.js"
-import GridView from "./views/GridView.js"
-import { APP_CONFIG, GRID_CONFIG } from "./config.js"
+import { APP_CONFIG } from "./config.js"
 
 const options = {
     class: "pixel-simulator-app"
