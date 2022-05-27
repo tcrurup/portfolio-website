@@ -18,6 +18,10 @@ class Soil extends GridCell{
         this.lightness = ( SOIL_CONFIG.MIN_LIGHT + (lightPercent * lightRange) )
     }
 
+    reset(){
+        this.#altitude = SOIL_CONFIG.DEFAULT_ALTITUDE
+    }
+
     lowerBy(value){
         const newAltitude = this.#altitude - value
         newAltitude < SOIL_CONFIG.MIN_ALTITUDE ? this.#altitude = SOIL_CONFIG.MIN_ALTITUDE : this.#altitude = newAltitude 

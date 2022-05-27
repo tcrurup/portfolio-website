@@ -11,12 +11,13 @@ class UserInterface extends DisplayElement{
     #buttons                //An array that holds all the button object associated with this interface
     #currentSelection       //Variable the holds the users current chosen option
     
-    constructor(){
+    constructor(actions){
         super("div", opts)
         this.#buttons = []
         this.innerHTML = `
         User Interface
         `
+        this.addActions(actions)
     }
 
     addButton(name, func){

@@ -19,20 +19,22 @@ class Grid{
 
     get allActions(){
         return {
-            "Circle": () => this.action = this.smallCrater
+            "Circle": () => this.action = this.smallCrater,
+            "Reset": () => this.reset()
         }
     }
 
     get action(){ return this.#action }
 
-    set action(a){ 
-        console.log('setting action')
-        this.#action = a
-    }
+    set action(a){ this.#action = a }
 
     getGridCell = coords => this.#gridCells.filter(cell => cell.x == coords.x).filter(cell => cell.y == coords.y)[0]
 
     getCircle = (centerCoords, radius=5) => this.#gridCells.filter(cell => cell.getDistanceFrom(centerCoords) < radius)
+
+    reset(){
+        this.#gridCells.forEach(cell => cell.reset())
+    }
 
     smallCrater(coords){
         this.getCircle(coords, 5).forEach(cell =>{

@@ -30,8 +30,7 @@ export default class PixelSimulator extends DisplayElement{
             GRID_CONFIG.CELL_PIXEL_SIZE
         )
         this.#gridView = new GridView(this.#grid)             //Should handle the view and everything related to drawing it. 
-        this.#ui = new UserInterface()
-        this.#ui.addActions(this.#grid.allActions)
+        this.#ui = new UserInterface(this.#grid.allActions)
         this.initialize()
     }
 
