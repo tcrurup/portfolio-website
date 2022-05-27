@@ -18,7 +18,13 @@ class GridController{
 
     get grid(){ return this.#grid }
     get gridView(){ return this.#gridView }
+    get actions(){ return this.#grid.allActions }
+    get context(){ return this.#gridView.context }
+    get element(){ return this.#gridView.element }
 
+    set debugElement(element){ this.#gridView.debugElement = element }
+
+    draw = () => this.#grid.drawToCanvas(this.context)
 
 }
 

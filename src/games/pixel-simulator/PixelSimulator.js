@@ -22,23 +22,23 @@ export default class PixelSimulator extends DisplayElement{
         parentElement.appendChild(this.element)
         this.#engine = new PixelSimulatorEngine()
         this.#gridController = new GridController()                           
-        this.#ui = new UserInterface(this.#gridController.grid.allActions)
+        this.#ui = new UserInterface(this.#gridController.actions)
         this.initialize()
     }
 
-    draw(){ this.#gridController.grid.drawToCanvas(this.#gridController.gridView.context) }//this.#gridController.grid.drawToCanvas(this.#engine.cellData)}
+    draw(){ this.#gridController.draw() }
 
     initialize(){
         //Initial setup and load
         //ADD ALL THE ELEMENTS
         let appElements = [
-            this.#gridController.gridView.element,
+            this.#gridController.element,
             this.#ui.element
         ]
         if(APP_CONFIG.DEBUG){ 
             this.#debugDisplay = new DebugDisplay()
             appElements.push(this.#debugDisplay.element)
-            this.#gridController.gridView.debugElement = this.#debugDisplay.element 
+            this.#gridController.debugElement = this.#debugDisplay.element 
         }
         appElements.forEach(elem => this.appendToElement(elem))
         this.draw()
